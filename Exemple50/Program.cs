@@ -4,32 +4,33 @@
     string value = Console.ReadLine();
     int index = Convert.ToInt32(value);
     return index;
-}    
+}
 
-void GetArray(int[,] array, int indexStr, int indexCol)
+void GetArray(int[,] array)
 {
-    for(int i = 0; i < indexStr; i++)
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    for (int i = 0; i < rows; i++)
     {
-        for(int j = 0; j < indexCol; j++)
-        array[i, j] = new Random().Next(2, 10);
+        for (int j = 0; j < columns; j++)
+            array[i, j] = new Random().Next(2, 10);
     }
 }
 
-void PrintArray(int[,] array, int indexX, int indexY, int indexStr, int indexCol )
+void PrintArray(int[,] array, int indexX, int indexY)
 {
-    if(indexX <= indexStr && indexY <= indexCol)
-            Console.WriteLine($"Искомый элемент = {array[indexX, indexY]}");
-        
-    else 
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+    if (indexX <= rows && indexY <= columns)
+        Console.WriteLine($"Искомый элемент = {array[indexX, indexY]}");
+    else
         Console.WriteLine("Такого числа в массиве нет");
 }
-
 
 int indexStr = GetIndexArray("Введите количество строк  ");
 int indexCol = GetIndexArray("Введите количество столбцов  ");
 int[,] array = new int[indexStr, indexCol];
-GetArray(array, indexStr, indexCol);
-
+GetArray(array);
 int indexX = GetIndexArray("Введите номер строки искомого элемента   ");
 int indexY = GetIndexArray("Введите номер столбца искомого элемента   ");
-PrintArray(array, indexX, indexY, indexStr, indexCol);
+PrintArray(array, indexX, indexY);
